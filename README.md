@@ -1,7 +1,10 @@
 # bagcat
 
-bagcat is a small command line utility for managing a collection of BagIt
-packages in Amazon S3. It is a work in progress.
+bagcat is a small command line utility for managing a collection of
+[BagIt](https://en.wikipedia/wiki/BagIt) packages in Amazon S3. 
+
+This is alpha software still under development :-) Your
+[feedback](https://github.com/umd-mith/bagcat/issues) is welcome!
 
 ```
 

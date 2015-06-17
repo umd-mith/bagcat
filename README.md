@@ -3,8 +3,8 @@
 bagcat is a small command line utility for managing a collection of
 [BagIt](https://en.wikipedia/wiki/BagIt) packages in Amazon S3. 
 
-This is alpha software still under development :-) Your
-[feedback](https://github.com/umd-mith/bagcat/issues) is welcome!
+This is alpha software that is still under development, so your 
+[feedback](https://github.com/umd-mith/bagcat/issues) would be welcome!
 
 ```
 

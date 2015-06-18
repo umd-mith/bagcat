@@ -163,23 +163,22 @@ def _size_format(num, suffix='B'):
 def main():
     parser = argparse.ArgumentParser(prog="bagcat")
     parser.add_argument("--profile", dest="profile", default="DEFAULT")
-    subparsers = parser.add_subparsers()
+    subparsers = parser.add_subparsers(dest="command")
+
+    subparsers.add_parser("help", help="print this message")
 
     ls = subparsers.add_parser("list", help="list all bags")
     ls.add_argument("--html", dest="html", action="store_true", default=False, help="output list as HTML")
-    ls.set_defaults(func=list_bags)
 
-    config = subparsers.add_parser("config", help="configure bagcat")
-    config.set_defaults(func=write_config)
+    subparsers.add_parser("config", help="configure bagcat")
 
     args = parser.parse_args()
 
-    if hasattr(args, 'func'):
-        try:
-            args.func(args)
-        except boto.exception.S3ResponseError as e:
-            print(e)
-    else:
+    if args.command == "list":
+        list_bags(args)
+    elif args.command == "config":
+        write_config(args)
+    elif args.command == "help":
         parser.print_help()
 
 

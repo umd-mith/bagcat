@@ -137,7 +137,7 @@ def _html(catalog):
 
         id = bag.info['Identifier']
         index.write('    <article class="row">\n')
-        index.write('    <h3><a href="%s">%s</a></h2>\n' % (id, id))
+        index.write('    <h3>%s</h2>\n' % id)
         index.write('    <dl>\n')
         for key in details:
             if key not in bag.info:

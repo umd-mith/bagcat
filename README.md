@@ -12,7 +12,7 @@ bucket. This is alpha software that is still under development, so your
 % bagcat config
 aws_access_key_id: skljfs
 aws_secret_access_key: sldkfjslkjf
-bucket: s3://my-bags
+bucket: my-bags
 
 % bagcat list
 

@@ -136,7 +136,7 @@ def _html(catalog):
         bag.info['Size'] = bag.size
 
         id = bag.info['Identifier']
-        index.write('    <article class="row">\n')
+        index.write('    <article id="%s" class="row">\n' % id)
         index.write('    <h3>%s</h2>\n' % id)
         index.write('    <dl>\n')
         for key in details:

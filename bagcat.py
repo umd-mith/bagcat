@@ -126,6 +126,7 @@ def _html(catalog):
 
     details = (
       'Contact-Name',
+      'Contact-Email',
       'Bagging-Date',
       'External-Description',
       'Size', 

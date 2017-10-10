@@ -664,13 +664,17 @@
       <dd>2017-03-24</dd>
       <dt>External-Description</dt>
       <dd>Data collected from the Twitter filter stream for #blm,#blacklivesmatter 
- between 2016-01-29 and 2017-03-18 using twarc. It includes 13,732,829
+ between 2016-01-29 and 2017-03-18 using twarc. It includes 17,292,130
  tweets. The files are broken into segments because of network connectivity
  problems, so there are varying time gaps present between the files. Also
  when the hashtags were trending globally rate limits may have prevented some
  tweets from being streamed over the API. Data collection stopped on
  2017-03-18 because of an authentication error that was the result of the
- keys having changed.</dd>
+ keys having changed. On October 6, 2017 during some data processing of 
+ the files it was discovered that due to gzip encoding errors in 
+ stream3.json.gz and stream5.json.gz the total count had been undercounted 
+ at 13,732,829. The encoding was fixed and the fixities in the manifests were 
+ updated.</dd>
       <dt>Size</dt>
       <dd>12.4GB</dd>
       <dt>License</dt>

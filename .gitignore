@@ -2,3 +2,5 @@
 build
 dist
 bagcat.egg-info
+Pipfile
+*.log

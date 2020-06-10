@@ -14,6 +14,7 @@ import sys
 import boto
 import json
 import bagit
+import logging
 import argparse
 import tempfile
 
@@ -137,9 +138,14 @@ def _html(catalog):
     )
 
     for bag in catalog.bags():
+
+        id = bag.info.get('Identifier')
+        if not id:
+            logging.error('%s/%sbag-info.txt is missing Identifier in bag-info.txt', bag._s3_key.bucket.name, bag._s3_key.name)
+            continue
+
         bag.info['Size'] = bag.size
 
-        id = bag.info['Identifier']
         index.write('    <article id="%s" class="row">\n' % id)
         index.write('    <h3>%s</h2>\n' % id)
         index.write('    <dl>\n')
@@ -185,6 +191,8 @@ def _size_format(num, suffix='B'):
 
 
 def main():
+    logging.basicConfig(filename='bagcat.log')
+
     parser = argparse.ArgumentParser(prog="bagcat")
     parser.add_argument("--profile", dest="profile", default="DEFAULT")
     subparsers = parser.add_subparsers(dest="command")

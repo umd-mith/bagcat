@@ -56,6 +56,10 @@ class Bag:
         bytes, files = self.info['Payload-Oxum'].split('.')
         return _size_format(bytes)
 
+    @property
+    def bytes(self):
+        bytes, files = self.info['Payload-Oxum'].split('.')
+        return bytes
 
     def __str__(self):
         return self._s3_key.name.strip("/")
@@ -133,7 +137,7 @@ def _html(catalog):
       'Contact-Email',
       'Bagging-Date',
       'External-Description',
-      'Size', 
+      'Size',
       'License'
     )
 
@@ -162,17 +166,20 @@ def _html(catalog):
 
 def _json(catalog):
     details = (
+      'Identifier',
       'Contact-Name',
       'Contact-Email',
       'Bagging-Date',
       'External-Description',
       'Size', 
+      'Bytes',
       'License'
     )
 
     out = []
     for bag in catalog.bags():
         bag.info['Size'] = bag.size
+        bag.info['Bytes'] = bag.bytes
         b = {}
         for key in details:
             if key not in bag.info:

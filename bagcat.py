@@ -12,6 +12,7 @@ import io
 import os
 import sys
 import boto
+import json
 import bagit
 import argparse
 import tempfile
@@ -96,6 +97,8 @@ def list_bags(args):
     catalog = Catalog(bucket, key, secret)
     if args.html:
         _html(catalog)
+    elif args.json:
+        _json(catalog)
     else:
         for bag in catalog.bags():
             print("")
@@ -151,6 +154,26 @@ def _html(catalog):
 
     index.write("   </body>\n</html>")
 
+def _json(catalog):
+    details = (
+      'Contact-Name',
+      'Contact-Email',
+      'Bagging-Date',
+      'External-Description',
+      'Size', 
+      'License'
+    )
+
+    out = []
+    for bag in catalog.bags():
+        bag.info['Size'] = bag.size
+        b = {}
+        for key in details:
+            if key not in bag.info:
+                continue
+            b[key] = bag.info[key]
+        out.append(b)
+    print(json.dumps(out, indent=2))
 
 def _size_format(num, suffix='B'):
     num = int(float(num))
@@ -170,6 +193,7 @@ def main():
 
     ls = subparsers.add_parser("list", help="list all bags")
     ls.add_argument("--html", dest="html", action="store_true", default=False, help="output list as HTML")
+    ls.add_argument("--json", dest="json", action="store_true", default=False, help="output list as JSON")
 
     subparsers.add_parser("config", help="configure bagcat")
 

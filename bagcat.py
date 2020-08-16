@@ -157,7 +157,7 @@ def _html(catalog):
             if key not in bag.info:
                 continue
             index.write("      <dt>%s</dt>\n" % key)
-            index.write("      <dd>%s</dd>\n" % bag.info[key])
+            index.write(("      <dd>%s</dd>\n" % bag.info[key]).encode('utf8'))
         index.write("    </dl>\n")
         index.write("    <hr>\n")
         index.write("    </article>\n\n")

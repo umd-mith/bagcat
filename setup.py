@@ -5,7 +5,7 @@ requirements = open("requirements.txt").read().split()
 
 setup(
     name = 'bagcat',
-    version = '0.0.5',
+    version = '0.0.6',
     url = 'https://github.com/umd-mith/bagcat/',
     author = 'Ed Summers',
     author_email = 'ehs@pobox.com',
